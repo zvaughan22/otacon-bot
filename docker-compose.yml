@@ -1,0 +1,39 @@
+services:
+  bot:
+    build: .
+    container_name: discord-bot
+    depends_on:
+      - db
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    working_dir: /app
+    environment:
+      - PYTHONPATH=/app
+    command: python bot/main.py
+    restart: unless-stopped
+
+  db:
+    image: postgres:15
+    container_name: postgres-db
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  aerich:
+    build: .
+    container_name: aerich-runner
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    working_dir: /app
+    entrypoint: ["aerich"]
+
+volumes:
+  postgres_data:

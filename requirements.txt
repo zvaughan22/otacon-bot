@@ -1,0 +1,17 @@
+discord.py
+python-dotenv
+openai
+aiohttp
+uwuipy
+nltk
+spacy
+sense2vec
+sentence_transformers
+transformers
+sentencepiece
+torch
+diffusers
+asyncpraw
+tortoise-orm[asyncpg]
+aerich
+tomlkit
